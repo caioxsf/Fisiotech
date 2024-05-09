@@ -9,7 +9,6 @@ function validarNomes ()
         event.target.style.border= "1px solid green";
         return true;
     }
-        
     else
     {
         event.target.style.border = "1px solid red";
@@ -124,7 +123,7 @@ function validarData ()
         event.target.style.border= "1px solid green";
 }
 
-//validarCidade() isado  
+//validarCidade() usado para fazer a verificação do campo Cidade
 function validarCidade ()
 {
     var cidade = event.target.value;
