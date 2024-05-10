@@ -1,3 +1,5 @@
+// Os comentários estão sendo referidos as validações do consulta.html. Foram usadas as mesmas funções para o paciente.html.
+
 // validarNomes() usado para fazer a verificação do campo Nome completo, Cidade e Bairro.
 function validarNomes ()
 {
@@ -148,4 +150,21 @@ function borda (select)
         select.style.border= "1px solid green";
     else
         select.style.border= "1px solid red";
+}
+
+// paciente.html
+function validarHora ()
+{
+    var hora = event.target.value;
+    
+    var horaArr = hora.split(":");
+
+    if(horaArr[0] && horaArr[1])
+        event.target.style.border= "1px solid green";
+    else
+    {
+        event.target.style.border= "1px solid red";
+        event.target.value = "";
+    }
+        
 }

@@ -85,20 +85,21 @@
           <h1 class="d-flex justify-content-center">Agendar Consulta</h1>
           <div class="col-md-6">
             <label for="nome" class="form-label">Nome</label>
-            <input type="text" class="form-control" id="nome">
+            <input type="text" class="form-control" id="nome" onblur="validarNomes(this)">
           </div>
           <div class="col-md-6">
             <label for="telefone" class="form-label">Telefone</label>
-            <input type="number" class="form-control" id="telefone">
+            <input type="text" class="form-control" id="telefone" onblur="mascara('(##)#####-####',this,event)">
           </div>
           <div class="col-6">
             <label for="email" class="form-label">E-mail</label>
-            <input type="email" class="form-control" id="email">
+            <input type="text" class="form-control" id="email" onblur="validarEmail(this)">
           </div>
     
           <div class="col-6">
             <label for="endereco" class="form-label">Serviço desejado</label>
-            <select id="estado" class="form-select">
+            <select id="estado" class="form-select" onblur="borda(this)">
+              <option disabled selected>Selecione uma opção</option>
               <option value="Avaliação Fisioterapêutica">Avaliação Fisioterapêutica</option>
               <option value="Fisioterapia Ortopédica ">Fisioterapia Ortopédica</option>
               <option value="Fisioterapia Neurológica">Fisioterapia Neurológica</option>
@@ -110,11 +111,11 @@
           </div>
           <div class="col-6">
             <label for="data" class="form-label">Data</label>
-            <input type="date" class="form-control" id="data">
+            <input type="date" class="form-control" id="data" onblur="validarData(this)">
           </div>
           <div class="col-6">
             <label for="hora" class="form-label">Horário</label>
-            <input type="time" class="form-control" id="hora">
+            <input type="time" class="form-control" id="hora" onblur="validarHora(this)">
           </div>
 
           <div class="mb-3">
@@ -139,5 +140,6 @@
 
       <!-- Template Main JS File -->
       <script src="assets/js/main.js"></script>
+      <script src="assets/js/validacoes.js"></script>
 </body>
 </html>
