@@ -1,4 +1,4 @@
-// Os comentários estão sendo referidos as validações do consulta.html. Foram usadas as mesmas funções para o paciente.html.
+// Os comentários estão sendo referidos as validações do consulta.html. Foram usadas as mesmas funções para o paciente.html e index.html(contato).
 
 // validarNomes() usado para fazer a verificação do campo Nome completo, Cidade e Bairro.
 function validarNomes ()
@@ -100,29 +100,39 @@ function validarData ()
     var mes = dataAtual.getMonth();
     var ano = dataAtual.getFullYear();
 
-    if(arr[0] > ano)
+    console.log(arr);
+    if(arr[0] == '')
     {
         event.target.style.border = "1px solid red";
-        event.target.value = "";
-        op = false;
+        op=false;
     }
     else
     {
-        if(arr[0] == ano)
+        if(arr[0] > ano)
         {
-            if(arr[2] > dia)
+            event.target.style.border = "1px solid red";
+            event.target.value = "";
+            op = false;
+        }
+        else
+        {
+            if(arr[0] == ano)
             {
-                if(arr[1] > mes)
+                if(arr[2] > dia)
                 {
-                    event.target.style.border= "1px solid red";
-                    event.target.value = "";
-                    op = false;
+                    if(arr[1] > mes)
+                    {
+                        event.target.style.border= "1px solid red";
+                        event.target.value = "";
+                        op = false;
+                    }
                 }
             }
         }
     }
-    if(op)
+    if(op == true)
         event.target.style.border= "1px solid green";
+    
 }
 
 //validarCidade() usado para fazer a verificação do campo Cidade
