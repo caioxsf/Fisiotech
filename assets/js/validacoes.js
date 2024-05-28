@@ -182,7 +182,7 @@ function validarHora ()
 
 var listaPaciente = [];
 
-function validar ()
+function tabelaDinamica ()
 {
     var vnome = document.getElementById('nome').value;
     var vtelefone = document.getElementById('telefone').value;
