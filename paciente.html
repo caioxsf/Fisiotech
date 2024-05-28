@@ -24,6 +24,7 @@
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/paciente.css">
+  <link rel="stylesheet" href="assets/css/tabela_paciente.css">
 
   <!-- Template Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
@@ -88,7 +89,7 @@
       
       <div class="d-flex justify-content-center form-container-div">
         
-        <form class="row g-3 form-container">
+        <form class="row g-3 form-container" onsubmit="event.preventDefault()">
           <h1 class="d-flex justify-content-center">Cadastro de Paciente</h1>
           <div class="col-md-6">
             <label for="nome" class="form-label">Nome Completo</label>
@@ -168,9 +169,15 @@
             <input type="text" class="form-control" id="cep" onblur="mascara('#####-###',this,event)">
           </div>
           <div class="col-12 d-flex justify-content-center">
-            <button type="submit" class="btn btn-primary btn-container">Cadastrar</button>
+            <button type="submit" class="btn btn-primary btn-container" onclick="validar()">Cadastrar</button>
           </div>
         </form>
+      </div>
+
+      
+
+      <div class="container-tabela">
+        <table class="myTable" id="table"></table>
       </div>
 
       <!-- Vendor JS Files -->

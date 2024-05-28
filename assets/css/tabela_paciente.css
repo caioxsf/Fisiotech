@@ -1,0 +1,55 @@
+.container-tabela
+{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+    margin-top: 25px;
+}
+
+.myTable
+{
+    border-collapse: collapse;
+    text-align: center;
+}
+
+th,td
+{
+    border: 1px solid black;
+}
+
+th
+{
+    background-color: rgba(128, 128, 128, 0.253);
+}
+td
+{
+    background-color: white;
+    padding: 5px;
+}
+@media screen and (max-width: 1230px)
+{
+
+    th
+    {
+        display: none;
+    }  
+
+    td
+    {
+        display: grid;
+        gap: .5rem;
+        grid-template-columns: 10ch auto;
+    }
+
+    td,td
+    {
+        width: 400px;
+        padding: 0px 15px 0px 15px;
+    }
+
+    td::before
+    {
+        content: attr(data-th) ": ";
+        font-weight: bold;
+    }
+}
