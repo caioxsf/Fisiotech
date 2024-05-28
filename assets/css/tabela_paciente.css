@@ -14,42 +14,58 @@
 
 th,td
 {
-    border: 1px solid black;
+    padding: 5px;
 }
 
 th
 {
-    background-color: rgba(128, 128, 128, 0.253);
+    background-color: #0A3530;
+    color: white;
+    border-left: 1px solid white;
 }
 td
 {
     background-color: white;
-    padding: 5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.493);
 }
+
+tr
+{
+    box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+}
+
+
 @media screen and (max-width: 1230px)
 {
 
     th
     {
         display: none;
+        color: #0A3530;
+        
     }  
 
     td
     {
         display: grid;
         gap: .5rem;
-        grid-template-columns: 10ch auto;
+        grid-template-columns: 12ch auto;
+        text-align: center;
     }
 
     td,td
     {
         width: 400px;
-        padding: 0px 15px 0px 15px;
+        margin: 0;
+        padding: 0;
     }
 
     td::before
     {
         content: attr(data-th) ": ";
         font-weight: bold;
+        background-color: #0A3530;
+        color: white;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.493);
     }
 }
