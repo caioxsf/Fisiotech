@@ -180,163 +180,234 @@ function validarHora ()
         
 }
 
-var listaPaciente = [];
+// tabela dinamica do cadastrar paciente //
 
-function tabelaDinamica ()
-{
-    var vnome = document.getElementById('nome').value;
-    var vtelefone = document.getElementById('telefone').value;
-    var vemail = document.getElementById('email').value;
-    var vnascimento = document.getElementById('nascimento').value;
-    var vcpf = document.getElementById('cpf').value;
-    var vendereco = document.getElementById('endereco').value;
-    var vbairro = document.getElementById('bairro').value;
-    var vsexo = document.getElementById('sexo').value;
-    var vcidade = document.getElementById('cidade').value;
-    var vestado = document.getElementById('estado').value;
-    var vcep = document.getElementById('cep').value;
+// tabela com checkbox
 
-    if(vnome && vtelefone && vemail && vnascimento && vcpf && vendereco && vbairro && vsexo && vcidade && vestado && vcep)
+var dados = [];
+
+function montarTabela(){
+    let tbody = document.querySelector('#tb-body');
+    let html = '';
+    /* DATA ATTRIBUTES (ou atributo de dados) data- */
+    if(dados == '')
     {
-        listaPaciente.push ({
-            nome: vnome,
-            telefone: vtelefone,
-            email: vemail,
-            nascimento: vnascimento,
-            cpf: vcpf,
-            endereco: vendereco,
-            bairro: vbairro,
-            sexo: vsexo,
-            cidade: vcidade,
-            estado: vestado,
-            cep: vcep
-        });
-        adicionarItem(listaPaciente);
-
+        document.getElementById('grid').style.display = 'none';
+        document.getElementById('btnExcluirSelecionados').style.display = 'none';
     }
+        
     else
     {
-        if(vnome == "")
+        document.getElementById('btnExcluirSelecionados').style.display = 'block';
+        document.getElementById('grid').style.display = 'block';
+        for (let item of dados)
         {
-            document.getElementById('nome').style.border = "1px solid red";
-            document.getElementById('nome').setAttribute('placeholder', 'Digite o nome corretamente!');
-        }
-        if(vtelefone == "")
-        {
-            document.getElementById('telefone').style.border = "1px solid red";
-            document.getElementById('telefone').setAttribute('placeholder', 'Digite o telefone corretamente!');
-        }
-        if(vemail == "")
-        {
-            document.getElementById('email').style.border = "1px solid red";
-            document.getElementById('email').setAttribute('placeholder', 'Digite o email corretamente!');
-        }
-        if(vnascimento == "")
-        {
-            document.getElementById('nascimento').style.border = "1px solid red";
-        }
-        if(vcpf == "")
-        {
-            document.getElementById('cpf').style.border = "1px solid red";
-            document.getElementById('cpf').setAttribute('placeholder', 'Digite o CPF corretamente!');
-        }
-        if(vendereco == "")
-        {
-            document.getElementById('endereco').style.border = "1px solid red";
-            document.getElementById('endereco').setAttribute('placeholder', 'Digite o endereço corretamente!');
-        }
-        if(vbairro == "")
-        {
-            document.getElementById('bairro').style.border = "1px solid red";
-            document.getElementById('bairro').setAttribute('placeholder', 'Digite o bairro corretamente!');
-        }
-        if(vsexo == "Selecione uma opção")
-        {
-            document.getElementById('sexo').style.border = "1px solid red";
-        }
-        if(vcidade == "")
-        {
-            document.getElementById('cidade').style.border = "1px solid red";
-            document.getElementById('cidade').setAttribute('placeholder', 'Digite a cidade corretamente!');
-        }
-        if(vestado == "Selecione uma opção")
-        {
-            document.getElementById('estado').style.border = "1px solid red";
-        }
-        if(vcep == "")
-        {
-            document.getElementById('cep').style.border = "1px solid red";
-            document.getElementById('cep').setAttribute('placeholder', 'Digite o CEP corretamente!');
+            
+            html+=`<tr>
+            
+                    <td data-th="Selecionar" style="margin-top: 20px;"><input style="cursor: pointer;" type="checkbox" data-id="${item.id}" /></td>
+                    <td data-th="Nome">${item.nome}</td>
+                    <td data-th="Telefone">${item.telefone}</td>
+                    <td data-th="Email">${item.email}</td>
+                    <td data-th="Data de Nascimento">${item.nascimento}</td>
+                    <td data-th="CPF">${item.cpf}</td>
+                    <td data-th="Endereço">${item.endereco}</td>
+                    <td data-th="Bairro">${item.bairro}</td>
+                    <td data-th="Sexo">${item.sexo}</td>
+                    <td data-th="Cidade">${item.cidade}</td>
+                    <td data-th="Estado">${item.estado}</td>
+                    <td data-th="CEP">${item.cep}</td>
+                    <td data-th="Excluir"><a class="btnExcluir" style="cursor: pointer;" onclick="excluirItem(${item.id}) ">&#9746;</a></td>
+                </tr>
+                `
         }
     }
+    
+    tbody.innerHTML = html;
 }
 
-var cont = 1;
-var div = 0;
-function adicionarItem (dados)
+function adicionarItem()
 {
-    var tabela = document.getElementById('table');
+    var vnome = document.getElementById('nome');
+    var vtelefone = document.getElementById('telefone');
+    var vemail = document.getElementById('email');
+    var vnascimento = document.getElementById('nascimento');
+    var vcpf = document.getElementById('cpf');
+    var vendereco = document.getElementById('endereco');
+    var vbairro = document.getElementById('bairro');
+    var vsexo = document.getElementById('sexo');
+    var vcidade = document.getElementById('cidade');
+    var vestado = document.getElementById('estado');
+    var vcep = document.getElementById('cep');
 
-    html = ` 
-        <tr class="thead">
-            <th>Nome</th>
-            <th>Telefone</th>
-            <th>Email</th>
-            <th>Data de Nascimento</th>
-            <th>CPF</th>
-            <th>Endereço</th>
-            <th>Bairro</th>
-            <th>Sexo</th>
-            <th>Cidade</th>
-            <th>Estado</th>
-            <th>CEP</th>
-        </tr>
-    `;
+    
+    let novoItem = {id: new Date().getTime(),
+                    nome: vnome.value,
+                    telefone: vtelefone.value,
+                    email: vemail.value,
+                    nascimento: vnascimento.value,
+                    cpf: vcpf.value,
+                    endereco: vendereco.value,
+                    bairro: vbairro.value,
+                    sexo: vsexo.value,
+                    cidade: vcidade.value,
+                    estado: vestado.value,
+                    cep: vcep.value
+                }
+                    
 
-    for(let dados_paciente of dados)
-    {
+        if(vnome.value && vtelefone.value && vemail.value && vnascimento.value && vcpf.value && vendereco.value && vbairro.value && vsexo.value && vcidade.value && vestado.value && vcep.value)
+        {                
+            dados.push(novoItem);
+            montarTabela();
+            vnome.value = '';
+            vtelefone.value = '';
+            vemail.value = '';
+            vnascimento.value = '';
+            vcpf.value = '';
+            vendereco.value = '';
+            vbairro.value = '';
+            vsexo.value = 'Selecione uma opção';
+            vcidade.value = '';
+            vestado.value = 'Selecione uma opção';
+            vcep.value = '';
 
-        div = cont % 2;
-        cont++;
-        console.log(div);
-        if(div == 0)
-        {
-            html += `
-            <tr class="tbody">
-                <td data-th="Nome" style="margin-top: 20px; background-color: #00b6a1;">${dados_paciente.nome}</td>
-                <td data-th="Telefone" style="background-color: #00b6a1;"">${dados_paciente.telefone}</td>
-                <td data-th="Email" style="background-color: #00b6a1;"">${dados_paciente.email}</td>
-                <td data-th="Data de Nascimento" style="background-color: #00b6a1;"">${dados_paciente.nascimento}</td>
-                <td data-th="CPF" style="background-color: #00b6a1;"">${dados_paciente.cpf}</td>
-                <td data-th="Endereço" style="background-color: #00b6a1;"">${dados_paciente.endereco}</td>
-                <td data-th="Bairro" style="background-color: #00b6a1;"">${dados_paciente.bairro}</td>
-                <td data-th="Sexo" style="background-color: #00b6a1;"">${dados_paciente.sexo}</td>
-                <td data-th="Cidade" style="background-color: #00b6a1;"">${dados_paciente.cidade}</td>
-                <td data-th="Estado" style="background-color: #00b6a1;"">${dados_paciente.estado}</td>
-                <td data-th="CEP" style="background-color: #00b6a1;"">${dados_paciente.cep}</td>
-            </tr>
-         `
+            
+            document.getElementById('nome').setAttribute('placeholder', '');
+            document.getElementById('nome').style.border = "1px solid grey";
+
+            document.getElementById('telefone').style.border = "1px solid grey";
+            document.getElementById('telefone').setAttribute('placeholder', '');
+
+            document.getElementById('email').style.border = "1px solid grey";
+            document.getElementById('email').setAttribute('placeholder', '');
+
+            document.getElementById('nascimento').style.border = "1px solid grey";
+
+            document.getElementById('cpf').style.border = "1px solid grey";
+            document.getElementById('cpf').setAttribute('placeholder', '');
+
+            document.getElementById('endereco').style.border = "1px solid grey";
+            document.getElementById('endereco').setAttribute('placeholder', '');
+
+            document.getElementById('bairro').style.border = "1px solid grey";
+            document.getElementById('bairro').setAttribute('placeholder', '');
+
+            document.getElementById('sexo').style.border = "1px solid grey";
+
+            document.getElementById('cidade').style.border = "1px solid grey";
+            document.getElementById('cidade').setAttribute('placeholder', '');
+
+            document.getElementById('estado').style.border = "1px solid grey";
+            
+            document.getElementById('cep').style.border = "1px solid grey";
+            document.getElementById('cep').setAttribute('placeholder', '');
+            
         }
         else
         {
-            html += `
-            <tr class="tbody">
-                <td data-th="Nome" style="margin-top: 20px; background-color: #43e6d39c;">${dados_paciente.nome}</td>
-                <td data-th="Telefone" style="background-color: #43e6d39c;">${dados_paciente.telefone}</td>
-                <td data-th="Email" style="background-color: #43e6d39c;">${dados_paciente.email}</td>
-                <td data-th="Data de Nascimento" style="background-color: #43e6d39c;">${dados_paciente.nascimento}</td>
-                <td data-th="CPF" style="background-color: #43e6d39c;">${dados_paciente.cpf}</td>
-                <td data-th="Endereço" style="background-color: #43e6d39c;">${dados_paciente.endereco}</td>
-                <td data-th="Bairro" style="background-color: #43e6d39c;">${dados_paciente.bairro}</td>
-                <td data-th="Sexo" style="background-color: #43e6d39c;">${dados_paciente.sexo}</td>
-                <td data-th="Cidade" style="background-color: #43e6d39c;">${dados_paciente.cidade}</td>
-                <td data-th="Estado" style="background-color: #43e6d39c;">${dados_paciente.estado}</td>
-                <td data-th="CEP" style="background-color: #43e6d39c;">${dados_paciente.cep}</td>
-            </tr>
-         `
+            console.log(vsexo.value);
+            if(vnome.value == "")
+            {
+                document.getElementById('nome').style.border = "1px solid red";
+                document.getElementById('nome').setAttribute('placeholder', 'Digite o nome corretamente!');
+            }
+            if(vtelefone.value == "")
+            {
+                document.getElementById('telefone').style.border = "1px solid red";
+                document.getElementById('telefone').setAttribute('placeholder', 'Digite o telefone corretamente!');
+            }
+            if(vemail.value == "")
+            {
+                document.getElementById('email').style.border = "1px solid red";
+                document.getElementById('email').setAttribute('placeholder', 'Digite o email corretamente!');
+            }
+            if(vnascimento.value == "")
+            {
+                document.getElementById('nascimento').style.border = "1px solid red";
+            }
+            if(vcpf.value == "")
+            {
+                document.getElementById('cpf').style.border = "1px solid red";
+                document.getElementById('cpf').setAttribute('placeholder', 'Digite o CPF corretamente!');
+            }
+            if(vendereco.value == "")
+            {
+                document.getElementById('endereco').style.border = "1px solid red";
+                document.getElementById('endereco').setAttribute('placeholder', 'Digite o endereço corretamente!');
+            }
+            if(vbairro.value == "")
+            {
+                document.getElementById('bairro').style.border = "1px solid red";
+                document.getElementById('bairro').setAttribute('placeholder', 'Digite o bairro corretamente!');
+            }
+            if(vsexo.value == "Selecione uma opção")
+            {
+                document.getElementById('sexo').style.border = "1px solid red";
+            }
+            if(vcidade.value == "")
+            {
+                document.getElementById('cidade').style.border = "1px solid red";
+                document.getElementById('cidade').setAttribute('placeholder', 'Digite a cidade corretamente!');
+            }
+            if(vestado.value == "Selecione uma opção")
+            {
+                document.getElementById('estado').style.border = "1px solid red";
+            }
+            if(vcep.value == "")
+            {
+                document.getElementById('cep').style.border = "1px solid red";
+                document.getElementById('cep').setAttribute('placeholder', 'Digite o CEP corretamente!');
+            }
         }
-        
-    }
-    tabela.innerHTML = html;
-
 }
+
+function excluirItem(idDel){
+    let listaAux = []
+    for (let i=0; i<dados.length;i++){
+        if(dados[i].id != idDel)
+            listaAux.push(dados[i]);
+    }
+    dados = listaAux;
+    montarTabela();
+}
+
+function excluirSelecionados(){
+    // vai pegar os chackbox que tem o data attribute associado
+   let listaCheckbox=document.querySelectorAll('[data-id]');
+   if (listaCheckbox.length>0){
+        for (let ch of listaCheckbox){
+            if (ch.checked ==true)
+                excluirItem(ch.dataset.id); // o valor associado a ele com a propriedade data-id 
+        } 
+    }
+    else
+       alert('Não há itens para serem excluídos!!'); 
+}
+
+function selecionaTodos(){
+    let listaCheckbox=document.querySelectorAll('[data-id]');
+    let ckPai = document.querySelector('#ckTodos');
+    for (let ch of listaCheckbox){
+      ch.checked = ckPai.checked;
+    }
+  }
+
+
+
+  document.addEventListener('DOMContentLoaded',
+       function(){
+          montarTabela();
+
+          let btnAdd = document.querySelector('#btn-add');
+          btnAdd.addEventListener('click',adicionarItem,false);
+          
+
+          let btnSelec = document.querySelector('#btnExcluirSelecionados');
+          btnSelec.addEventListener('click',excluirSelecionados,false);
+
+          let ckPai = document.querySelector('#ckTodos');
+          ckPai.addEventListener('click',selecionaTodos,false); 
+
+       }
+,false);

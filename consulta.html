@@ -81,11 +81,12 @@
 
       <div class="d-flex justify-content-center form-container-div">
         
-        <form class="row g-3 form-container">
+        <form class="row g-3 form-container" onsubmit="event.preventDefault()">
           <h1 class="d-flex justify-content-center">Agendar Consulta</h1>
           <div class="col-md-6">
             <label for="nome" class="form-label">Nome Completo</label>
             <input type="text" class="form-control" id="nome" onblur="validarNomes(this)">
+            
           </div>
           <div class="col-md-6">
             <label for="telefone" class="form-label">Telefone</label>
@@ -97,8 +98,8 @@
           </div>
     
           <div class="col-6">
-            <label for="endereco" class="form-label">Serviço desejado</label>
-            <select id="estado" class="form-select" onblur="borda(this)">
+            <label for="servico" class="form-label">Serviço desejado</label>
+            <select id="servico" class="form-select" onblur="borda(this)">
               <option disabled selected>Selecione uma opção</option>
               <option value="Avaliação Fisioterapêutica">Avaliação Fisioterapêutica</option>
               <option value="Fisioterapia Ortopédica ">Fisioterapia Ortopédica</option>
@@ -124,7 +125,7 @@
           </div>
           
           <div class="col-12 d-flex justify-content-center">
-            <button type="submit" class="btn btn-primary btn-container">Cadastrar</button>
+            <button type="submit" class="btn btn-primary btn-container" onclick="tabelaDinamicaConsulta()">Cadastrar</button>
           </div>
         </form>
       </div>

@@ -169,16 +169,47 @@
             <input type="text" class="form-control" id="cep" onblur="mascara('#####-###',this,event)">
           </div>
           <div class="col-12 d-flex justify-content-center">
-            <button type="submit" class="btn btn-primary btn-container" onclick="tabelaDinamica()">Cadastrar</button>
+            <button type="submit" class="btn btn-primary btn-container" id="btn-add" >Cadastrar</button>
           </div>
         </form>
       </div>
 
-      
-
       <div class="container-tabela">
-        <table class="myTable" id="table"></table>
+
+        <table id="grid" class="tab" style="display: none;">
+        <thead>
+          <tr>
+              <th class="coluna"><input type="checkbox" id="ckTodos" onchange=""></th>
+              <th class="coluna">Nome</th>
+              <th class="coluna">Telefone</th>
+              <th class="coluna">Email</th>
+              <th class="coluna">Data de Nascimento</th>
+              <th class="coluna">CPF</th>
+              <th class="coluna">Endereço</th>
+              <th class="coluna">Bairro</th>
+              <th class="coluna">Sexo</th>
+              <th class="coluna">Cidade</th>
+              <th class="coluna">Estado</th>
+              <th class="coluna">CEP</th>
+              <th class="coluna x"> </th>
+
+          </tr>
+        </thead>
+
+  
+
+          <tbody id="tb-body">
+              <!-- tabela vai ser criada aqui -->
+          </tbody>
+
+        </table>
       </div>
+
+      <div id="chSelecionarTodos" class="btn-pai">		
+        <input type="button" value="Excluir Selecionados" id="btnExcluirSelecionados" class="btn-exclusao" style="display: none;">
+      </div>
+
+
 
       <!-- Vendor JS Files -->
       <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
