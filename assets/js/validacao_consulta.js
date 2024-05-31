@@ -90,7 +90,6 @@ function montarTabela(){
         {
             
             html+=`<tr>
-            
                     <td data-th="Selecionar" style="margin-top: 20px;"><input style="cursor: pointer;" type="checkbox" data-id="${item.id}" /></td>
                     <td data-th="Nome">${item.nome}</td>
                     <td data-th="Telefone">${item.telefone}</td>
@@ -142,8 +141,6 @@ function adicionarItem()
             vhora.value = '';
             vobs.value = '';
             
-
-            
             document.getElementById('nome').setAttribute('placeholder', '');
             document.getElementById('nome').style.border = "1px solid grey";
 
@@ -160,12 +157,9 @@ function adicionarItem()
             document.getElementById('hora').style.border = "1px solid grey";
             
             document.getElementById('obs').style.border = "1px solid grey";
-           
-            
         }
         else
         {
-            
             if(vnome.value == "")
             {
                 document.getElementById('nome').style.border = "1px solid red";

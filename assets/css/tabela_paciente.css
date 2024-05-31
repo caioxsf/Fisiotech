@@ -43,22 +43,45 @@ tr
 .btn-exclusao
 {
     margin-bottom: 50px;
-    background-color: white;
+    background-color: lightcoral;
     border: none;
     padding: 10px;
     border-radius: 8px;
     transition: 0.2s ease-in-out;
+    color: white;
 }
 
 .btn-exclusao:hover
 {
     color: white;
-    background-color: #0A3530;
+    background-color: rgb(243, 87, 87);
 } 
 
+.input-ch
+{
+    display: none;
+}
 
 @media screen and (max-width: 1230px)
 {
+
+    .input-ch
+    {
+        position: relative;
+        top: 70px;
+        background-color: #0A3530;
+        color: white;
+        padding: 3px;
+        text-align: center;
+        cursor: pointer;
+        display: block;
+        transition: 0.2s ease-in-out;
+    }
+
+    .input-ch:hover
+    {
+        background-color: #13534c;
+    }
 
     th
     {
