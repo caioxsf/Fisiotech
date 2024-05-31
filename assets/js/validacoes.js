@@ -101,7 +101,6 @@ function validarData ()
     var ano = dataAtual.getFullYear();
     var anoAntigo = ano - 105;
 
-    console.log(anoAntigo);
     if(arr[0] == '')
     {
         event.target.style.border = "1px solid red";
@@ -306,7 +305,7 @@ function adicionarItem()
         }
         else
         {
-            console.log(vsexo.value);
+            
             if(vnome.value == "")
             {
                 document.getElementById('nome').style.border = "1px solid red";
