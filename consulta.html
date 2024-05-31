@@ -23,6 +23,7 @@
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/tabela_paciente.css">
 
   <!-- Template Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
@@ -112,11 +113,11 @@
           </div>
           <div class="col-6">
             <label for="data" class="form-label">Data</label>
-            <input type="date" class="form-control" id="data" onblur="validarData(this)">
+            <input type="date" class="form-control" id="data" onblur="validarDataConsulta(this)">
           </div>
           <div class="col-6">
-            <label for="hora" class="form-label">Horário</label>
-            <input type="time" class="form-control" id="hora" onblur="validarHora(this)">
+            <label for="hora" class="form-label">Horário ( 8:00 - 17:00 )</label>
+            <input type="time" class="form-control" id="hora" onblur="validarHoraConsulta(this)">
           </div>
 
           <div class="mb-3">
@@ -125,9 +126,40 @@
           </div>
           
           <div class="col-12 d-flex justify-content-center">
-            <button type="submit" class="btn btn-primary btn-container" onclick="tabelaDinamicaConsulta()">Cadastrar</button>
+            <button type="submit" class="btn btn-primary btn-container" id="btn-add">Cadastrar</button>
           </div>
         </form>
+      </div>
+
+      <div class="container-tabela">
+
+        <table id="grid" class="tab" style="display: none;">
+        <thead>
+          <tr>
+              <th class="coluna"><input type="checkbox" id="ckTodos" onchange=""></th>
+              <th class="coluna">Nome</th>
+              <th class="coluna">Telefone</th>
+              <th class="coluna">Email</th>
+              <th class="coluna">Serviço</th>
+              <th class="coluna">Data</th>
+              <th class="coluna">Horário</th>
+              <th class="coluna">Obs</th>
+              <th class="coluna x"> </th>
+
+          </tr>
+        </thead>
+
+  
+
+          <tbody id="tb-body">
+              <!-- tabela vai ser criada aqui -->
+          </tbody>
+
+        </table>
+      </div>
+
+      <div id="chSelecionarTodos" class="btn-pai">		
+        <input type="button" value="Excluir Selecionados" id="btnExcluirSelecionados" class="btn-exclusao" style="display: none;">
       </div>
    
       <!-- Vendor JS Files -->
@@ -142,5 +174,6 @@
       <!-- Template Main JS File -->
       <script src="assets/js/main.js"></script>
       <script src="assets/js/validacoes.js"></script>
+      <script src="assets/js/validacao_consulta.js"></script>
 </body>
 </html>

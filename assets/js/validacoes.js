@@ -181,7 +181,7 @@ function validarHora ()
 
 // tabela dinamica do cadastrar paciente //
 
-// tabela com checkbox
+// tabela com checkbox paciente
 
 var dados = [];
 
