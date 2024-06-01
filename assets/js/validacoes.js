@@ -9,6 +9,7 @@ function validarNomes ()
     if(arr[1])
     {
         event.target.style.border= "1px solid green";
+
         return true;
     }
     else
